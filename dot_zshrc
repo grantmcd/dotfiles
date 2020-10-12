@@ -1,0 +1,68 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+source ~/antigen.zsh
+
+antigen use oh-my-zsh
+
+antigen bundle zsh-navigation-tools
+antigen bundle autojump
+antigen bundle z
+antigen bundle aws
+antigen bundle brew
+antigen bundle docker
+antigen bundle iterm2
+antigen bundle minikube
+antigen bundle node
+antigen bundle npm
+antigen bundle python
+antigen bundle pyenv
+antigen bundle terraform
+antigen bundle yarn
+antigen bundle helm
+antigen bundle github
+antigen bundle git
+antigen bundle zsh_reload
+antigen bundle vscode
+antigen bundle command-not-found
+antigen bundle kubectl
+antigen bundle "MichaelAquilina/zsh-you-should-use"
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle history-substring-search
+antigen bundle zsh-users/zsh-completions
+antigen bundle zsh-users/zsh-autosuggestions
+antigen bundle  asdf
+
+antigen theme https://github.com/iam4x/zsh-iterm-touchbar
+antigen theme romkatv/powerlevel10k
+
+# Tell Antigen that you're done.
+antigen apply
+
+alias eks-dev='okta-awscli --profile dev --force --okta-profile dev && export AWS_DEFAULT_PROFILE=dev && kubectx cyderes-eks-dev'
+alias eks-prod='okta-awscli --profile prod --force --okta-profile prod && export AWS_DEFAULT_PROFILE=prod && kubectx cyderes-eks'
+
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+export TOUCHBAR_GIT_ENABLED=true
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+bindkey "^X\x7f" backward-kill-line
+
+
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
